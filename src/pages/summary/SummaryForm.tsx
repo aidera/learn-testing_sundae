@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { ChangeEvent, useState } from 'react';
+import { Button, Form, OverlayTrigger, Popover } from 'react-bootstrap';
 
 const SummaryForm = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
@@ -8,9 +8,22 @@ const SummaryForm = () => {
     setIsButtonDisabled(!event.target.checked);
   };
 
+  const popover = (
+    <Popover id="popover-basic">
+      <Popover.Body>No ice-cream will actually be delivered</Popover.Body>
+    </Popover>
+  );
+
   const checkboxLabel = (
     <span>
-      I agree to <span className="link-primary">Terms and Conditions</span>
+      I agree to
+      <OverlayTrigger
+        trigger={['hover', 'focus']}
+        placement="right"
+        overlay={popover}
+      >
+        <span className="link-primary">Terms and Conditions</span>
+      </OverlayTrigger>
     </span>
   );
 
