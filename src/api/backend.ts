@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const instance = axios.create({
   withCredentials: true,
-  baseURL: 'http://localhost:3030/',
+  baseURL: 'http://localhost:3030',
 });
 
 export type OptionsType = 'scoops' | 'toppings';
@@ -13,4 +13,4 @@ export interface ProductItem {
 }
 
 export const getOptions = (optionType: OptionsType) =>
-  instance.get<ProductItem[]>(`${optionType}`);
+  instance.get<ProductItem[]>(`/${optionType}`);

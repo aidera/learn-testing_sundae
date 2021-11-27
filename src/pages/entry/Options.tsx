@@ -4,6 +4,7 @@ import { Row } from 'react-bootstrap';
 import ScoopOption from './ScoopOption';
 import { getOptions, OptionsType, ProductItem } from '../../api/backend';
 import ToppingOption from './ToppingOption';
+import AlertBanner from '../../components/AlertBanner';
 
 interface Props {
   optionType: OptionsType;
@@ -13,6 +14,7 @@ const Options = (props: Props) => {
   const { optionType } = props;
 
   const [items, setItems] = useState<ProductItem[]>([]);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -22,8 +24,10 @@ const Options = (props: Props) => {
           setItems(response.data);
         }
       })
-      .catch((error) => {
-        //TODO: handle error response
+      .catch(() => {
+        if (isSubscribed) {
+          setError(true);
+        }
       });
 
     return () => {
@@ -50,6 +54,10 @@ const Options = (props: Props) => {
       );
     }
   });
+
+  if (error) {
+    return <AlertBanner />;
+  }
 
   return (
     <>

@@ -1,13 +1,13 @@
 import React from 'react';
+
 import './App.scss';
-import Options from './pages/entry/Options';
+import OrderEntry from './pages/entry/OrderEntry';
 import SummaryForm from './pages/summary/SummaryForm';
 
 function App() {
   return (
     <>
-      <Options optionType="scoops" />
-      <Options optionType="toppings" />
+      <OrderEntry />
       <SummaryForm />
     </>
   );
