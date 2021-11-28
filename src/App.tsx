@@ -2,14 +2,16 @@ import React from 'react';
 
 import './App.scss';
 import OrderEntry from './pages/entry/OrderEntry';
-import SummaryForm from './pages/summary/SummaryForm';
+import Container from 'react-bootstrap/Container';
+import { OrderDetailsProvider } from './context/OrderDetails';
 
 function App() {
   return (
-    <>
-      <OrderEntry />
-      <SummaryForm />
-    </>
+    <Container>
+      <OrderDetailsProvider>
+        <OrderEntry />
+      </OrderDetailsProvider>
+    </Container>
   );
 }
 
